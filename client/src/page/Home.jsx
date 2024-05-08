@@ -4,12 +4,12 @@ import './App.css';
 
 function Home() {
   const [tempList, setTempList] = useState([])
-  const [data, setData] = useState(["seema", "ram", "kamal", "aman", "kritika"])
+ 
   useEffect(()=>{
     fetchData()
   },[])
   const fetchData=()=>{
-    fetch('https://dummyjson.com/users')
+    fetch("")
     .then(res => res.json())
     .then(json => setTempList(json.users)).catch(e =>{
       console.log("error", e)

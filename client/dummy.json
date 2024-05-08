@@ -1,4 +1,4 @@
-[
+const dummy = [
     {
         "productName": "Laptop 1",
         "price": 2236,
@@ -8,10 +8,10 @@
     },
     {
         "productName": "Laptop 13",
-        "price": null,
-        "rating": null,
-        "discount": null,
-        "availability": null
+        "price": 1244,
+        "rating": 4.5,
+        "discount": 45,
+        "availability": "out-of-stock"
     },
     {
         "productName": "Laptop 3",
@@ -48,4 +48,6 @@
         "discount": 24,
         "availability": "out-of-stock"
     }
-]
+];
+
+export default dummy;
