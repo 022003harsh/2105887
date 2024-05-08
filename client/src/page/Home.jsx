@@ -1,12 +1,52 @@
-import React from 'react'
 
-const Home = () => {
+import { useEffect, useState } from 'react';
+import './App.css';
+
+function Home() {
+  const [tempList, setTempList] = useState([])
+  const [data, setData] = useState(["seema", "ram", "kamal", "aman", "kritika"])
+  useEffect(()=>{
+    fetchData()
+  },[])
+  const fetchData=()=>{
+    fetch('https://dummyjson.com/users')
+    .then(res => res.json())
+    .then(json => setTempList(json.users)).catch(e =>{
+      console.log("error", e)
+    })
+  }
+  const ascendingEvent = () => {
+     let data = [...tempList]
+     if(data.length > 0) {
+      let result = data.sort((a,b) => a.username.localeCompare(b.username))
+      setTempList(result)
+     }
+  }
+  const descendingEvent = () => {
+     let data = [...tempList]
+     if(data.length > 0) {
+      let result = data.sort((a,b) => b.username.localeCompare(a.username))
+      setTempList(result)
+     }
+
+  }
   return (
-    <div className='text-3xl text-blue-600'>
-      All Products
-      
-    </div>
-  )
-};
+    <div className="App" style={{textAlign:'left', width:'50%', margin:'10px auto'}}>
+      {
+        tempList && tempList.length > 0 && tempList != undefined ? tempList.map((item, i) =>{
+            return(
+              <div>{item.username}</div>
+            )
+        }) : "No Data"
+      }
+      <div style={{marginTon:'20px'}}>
+          <button onClick={ascendingEvent}>Ascending</button>
+          <button style={{margin:'10px'}} onClick={descendingEvent}>Descending</button>
+          <button onClick={fetchData}>Prev Data</button>
+      </div>
 
-export default Home
+    </div>
+  );
+}
+
+export default Home;
